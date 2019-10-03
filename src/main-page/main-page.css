@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+  background-color: #fafafa;
+  font-size: calc(10px + 2vmin);
+  color: rgb(66, 65, 65);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
