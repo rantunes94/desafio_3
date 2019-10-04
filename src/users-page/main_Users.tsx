@@ -1,6 +1,6 @@
 import React from "react";
-import AddUsers from "./usersAdd";
-import ListUsers from "./usersList";
+import AddUsers from "./add_Users";
+import ListUsers from "./list_Users";
 
 // import { useParams } from "react-router";
 
@@ -14,13 +14,12 @@ export interface UserState {
 }
 
 export interface User {
-  // id: number;
   nome: string;
   morada: string;
   idade: number;
 }
 
-class ShowUser extends React.Component<UserProps, UserState> {
+class MainUsers extends React.Component<UserProps, UserState> {
   constructor(props: UserProps) {
     super(props);
     this.state = {
@@ -38,6 +37,7 @@ class ShowUser extends React.Component<UserProps, UserState> {
       [evt.target.name]: evt.target.value
     });
   };
+
   componentDidMount() {
     this.getUsers();
   }
@@ -52,28 +52,39 @@ class ShowUser extends React.Component<UserProps, UserState> {
       users: parsedUsers
     });
   };
-  // Para adicionar um user ao array de users
-  handleSubmit = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ): void => {
-    event.preventDefault();
-    const { nome, morada, idade, users } = this.state;
-    const userToAdd = { nome: nome, morada: morada, idade: idade };
-    // se forem iguais posso "esconder" const userToAdd = { nome, morada,  idade };
-    let usersCopy = [...users];
-    usersCopy.push(userToAdd);
 
-    this.setState({
-      users: usersCopy,
-      nome: "",
-      morada: "",
-      idade: 0
-    });
-    alert("User added with success!");
-    localStorage.setItem("users", JSON.stringify(usersCopy));
-    // setTimeout(() =>{
-    //   console.log(users);
-    // }, 1000);
+  // Para adicionar um user ao array de users
+  addUsers = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+    try {
+      event.preventDefault();
+
+      const { nome, morada, idade } = this.state;
+      const userToAdd = { nome: nome, morada: morada, idade: idade };
+      let usersStored: string | null = localStorage.getItem("users");
+      let parsedUsers;
+
+      if (usersStored) {
+        parsedUsers = JSON.parse(usersStored);
+      }
+
+      let usersCopy = [...parsedUsers];
+      usersCopy.push(userToAdd);
+
+      this.setState({
+        users: usersCopy,
+        nome: "",
+        morada: "",
+        idade: 0
+      });
+
+      // Adiciona à minha local storage
+      localStorage.setItem("users", JSON.stringify(usersCopy));
+
+      // Dou um alerta de sucesso
+      alert("User added with success!");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   render(): JSX.Element {
@@ -86,7 +97,7 @@ class ShowUser extends React.Component<UserProps, UserState> {
             morada={morada}
             idade={idade}
             handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
+            handleSubmit={this.addUsers}
           />
         ) : null}
 
@@ -98,4 +109,4 @@ class ShowUser extends React.Component<UserProps, UserState> {
   }
 }
 
-export default ShowUser;
+export default MainUsers;

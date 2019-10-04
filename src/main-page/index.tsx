@@ -8,7 +8,7 @@ import {
   Redirect
 } from "react-router-dom";
 import MostrarComments from "../comments-page/comment";
-import ShowUser from "../users-page/user-main";
+import MainUsers from "../users-page/main_Users";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
@@ -39,8 +39,8 @@ const App: React.FC = () => {
         <Switch>
           <Route path="/post" exact component={ShowPost} />
           <Route path="/post/:id/comments" component={MostrarComments} />
-          <Route path="/user" exact component={ShowUser} />
-          <Route path="/user/users" exact component={ShowUser} />
+          <Route path="/user" exact component={MainUsers} />
+          <Route path="/user/users" exact component={MainUsers} />
         </Switch>
       </div>
     </Router>

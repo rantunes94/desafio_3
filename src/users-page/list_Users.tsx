@@ -1,5 +1,5 @@
 import * as React from "react";
-import { User } from "./user-main";
+import { User } from "./main_Users";
 import { Table } from "react-bootstrap";
 
 export interface ListUsersProps {}
