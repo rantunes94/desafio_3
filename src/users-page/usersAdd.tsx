@@ -11,7 +11,7 @@ export interface AddUsersProps {
 }
 
 class AddUsers extends React.Component<AddUsersProps> {
-  render() {
+  render(): JSX.Element {
     const { nome, morada, idade, handleChange, handleSubmit } = this.props;
     return (
       <div className="container shadow">
@@ -21,7 +21,7 @@ class AddUsers extends React.Component<AddUsersProps> {
           <input
             name="nome"
             value={nome}
-            onChange={this.props.handleChange}
+            onChange={handleChange}
             type="text"
             className="form-control col-6 m-3"
             aria-describedby="helpId"
@@ -31,7 +31,7 @@ class AddUsers extends React.Component<AddUsersProps> {
           <input
             name="morada"
             value={morada}
-            onChange={this.props.handleChange}
+            onChange={handleChange}
             type="text"
             className="form-control col-6 m-3"
             aria-describedby="helpId"
@@ -41,7 +41,7 @@ class AddUsers extends React.Component<AddUsersProps> {
           <input
             name="idade"
             value={idade}
-            onChange={this.props.handleChange}
+            onChange={handleChange}
             type="number"
             className="form-control col-6 m-3"
             aria-describedby="helpId"
@@ -49,7 +49,7 @@ class AddUsers extends React.Component<AddUsersProps> {
           ></input>
 
           <button
-            onClick={this.props.handleSubmit}
+            onClick={handleSubmit}
             className="btn btn-outline-primary ml-3 mt-1 "
           >
             Submit
