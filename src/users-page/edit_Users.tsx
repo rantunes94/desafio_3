@@ -2,6 +2,7 @@ import * as React from "react";
 
 export interface EditUsersProps {
   match?: any;
+  history: any;
 }
 export interface EditUsersState {
   nome: string;
@@ -63,6 +64,8 @@ class EditUsers extends React.Component<EditUsersProps, EditUsersState> {
     this.setState({
       users: usersCopy
     });
+
+    this.props.history.goBack();
   };
 
   constructor(props: EditUsersProps) {
