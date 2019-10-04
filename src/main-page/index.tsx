@@ -11,6 +11,7 @@ import MostrarComments from "../comments-page/comment";
 import MainUsers from "../users-page/main_Users";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import EditUsers from "../users-page/edit_Users";
 
 const App: React.FC = () => {
   return (
@@ -41,6 +42,7 @@ const App: React.FC = () => {
           <Route path="/post/:id/comments" component={MostrarComments} />
           <Route path="/user" exact component={MainUsers} />
           <Route path="/user/users" exact component={MainUsers} />
+          <Route path="/user/:nome/edit" exact component={EditUsers} />
         </Switch>
       </div>
     </Router>

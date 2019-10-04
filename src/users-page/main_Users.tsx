@@ -1,6 +1,7 @@
 import React from "react";
 import AddUsers from "./add_Users";
 import ListUsers from "./list_Users";
+import EditUsers from "./edit_Users";
 
 // import { useParams } from "react-router";
 
@@ -97,7 +98,7 @@ class MainUsers extends React.Component<UserProps, UserState> {
             morada={morada}
             idade={idade}
             handleChange={this.handleChange}
-            handleSubmit={this.addUsers}
+            addUsers={this.addUsers}
           />
         ) : null}
 

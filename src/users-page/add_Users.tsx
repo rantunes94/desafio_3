@@ -5,14 +5,12 @@ export interface AddUsersProps {
   morada: string;
   idade: number;
   handleChange: (evt: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
+  addUsers: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 class AddUsers extends React.Component<AddUsersProps> {
   render(): JSX.Element {
-    const { nome, morada, idade, handleChange, handleSubmit } = this.props;
+    const { nome, morada, idade, handleChange, addUsers } = this.props;
     return (
       <div className="container shadow">
         <div className="form-group p-3">
@@ -49,7 +47,7 @@ class AddUsers extends React.Component<AddUsersProps> {
           ></input>
 
           <button
-            onClick={handleSubmit}
+            onClick={addUsers}
             className="btn btn-outline-primary ml-3 mt-1 "
           >
             Submit

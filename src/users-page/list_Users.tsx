@@ -1,8 +1,12 @@
 import * as React from "react";
 import { User } from "./main_Users";
 import { Table } from "react-bootstrap";
+import EditUsers from "./edit_Users";
+import { withRouter } from "react-router";
 
-export interface ListUsersProps {}
+export interface ListUsersProps {
+  history?: any;
+}
 
 export interface ListUsersState {
   nome: string;
@@ -45,7 +49,6 @@ class ListUsers extends React.Component<ListUsersProps, ListUsersState> {
 
   handleDelete = (name: string): void => {
     const nameSelected: string = name;
-    console.log(nameSelected);
 
     let usersStoraged: string | null = localStorage.getItem("users");
     let parsedUsers;
@@ -67,7 +70,7 @@ class ListUsers extends React.Component<ListUsersProps, ListUsersState> {
   };
 
   render(): JSX.Element {
-    // const { users } = this.state;
+    const { nome, morada, idade } = this.state;
     return (
       <div className="container">
         <div>
@@ -81,7 +84,7 @@ class ListUsers extends React.Component<ListUsersProps, ListUsersState> {
               </tr>
             </thead>
             <tbody>
-              {this.state.users.map(user => (
+              {this.state.users.map((user, index: number) => (
                 <tr key={user.nome}>
                   <td>{user.nome}</td>
                   <td>{user.morada}</td>
@@ -95,7 +98,12 @@ class ListUsers extends React.Component<ListUsersProps, ListUsersState> {
                     >
                       Delete
                     </button>
-                    <button className="btn btn-primary col-4 ml-3 ">
+                    <button
+                      onClick={() =>
+                        this.props.history.push(`/user/${user.nome}/edit`)
+                      }
+                      className="btn btn-primary col-4 ml-3 "
+                    >
                       Edit
                     </button>
                   </td>
@@ -103,10 +111,21 @@ class ListUsers extends React.Component<ListUsersProps, ListUsersState> {
               ))}
             </tbody>
           </Table>
+
+          {/* {window.location.href === "http://localhost:3000/user/edit" ? (
+            <EditUsers
+              nome={nome}
+              morada={morada}
+              idade={idade}
+              handleChange={this.handleChange}
+              handleEdit={this.handleEdit}
+              // addUsers={this.addUsers}
+            />
+          ) : null} */}
         </div>
       </div>
     );
   }
 }
 
-export default ListUsers;
+export default withRouter<any, any>(ListUsers);
