@@ -84,7 +84,7 @@ class ListUsers extends React.Component<ListUsersProps, ListUsersState> {
               </tr>
             </thead>
             <tbody>
-              {this.state.users.map((user, index: number) => (
+              {this.state.users.map(user => (
                 <tr key={user.nome}>
                   <td>{user.nome}</td>
                   <td>{user.morada}</td>

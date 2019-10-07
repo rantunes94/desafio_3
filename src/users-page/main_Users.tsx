@@ -66,21 +66,32 @@ class MainUsers extends React.Component<UserProps, UserState> {
 
       if (usersStored) {
         parsedUsers = JSON.parse(usersStored);
+        let usersCopy = [...parsedUsers];
+        usersCopy.push(userToAdd);
+
+        this.setState({
+          users: usersCopy,
+          nome: "",
+          morada: "",
+          idade: 0
+        });
+
+        // Adiciona à minha local storage
+        localStorage.setItem("users", JSON.stringify(usersCopy));
+      } else {
+        let usersCopy = [];
+        usersCopy.push(userToAdd);
+
+        this.setState({
+          users: usersCopy,
+          nome: "",
+          morada: "",
+          idade: 0
+        });
+
+        // Adiciona à minha local storage
+        localStorage.setItem("users", JSON.stringify(usersCopy));
       }
-
-      let usersCopy = [...parsedUsers];
-      usersCopy.push(userToAdd);
-
-      this.setState({
-        users: usersCopy,
-        nome: "",
-        morada: "",
-        idade: 0
-      });
-
-      // Adiciona à minha local storage
-      localStorage.setItem("users", JSON.stringify(usersCopy));
-
       // Dou um alerta de sucesso
       alert("User added with success!");
     } catch (error) {
