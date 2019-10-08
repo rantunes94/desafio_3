@@ -47,7 +47,7 @@ class EditUsers extends React.Component<EditUsersProps, EditUsersState> {
     }
 
     let usersCopy = [...parsedUsers];
-    let filteredUser: User = usersCopy.find(user => user.nome === nameSelected);
+    //let filteredUser: User = usersCopy.find(user => user.nome === nameSelected);
 
     usersCopy.forEach((user: User) => {
       if (nameSelected === user.nome) {
